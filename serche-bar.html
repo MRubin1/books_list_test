@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="search-bar.css">
+    <script src="./serche-bar.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="BookController">
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" ng-model="searchQuery" placeholder="Search for books">
+                <button ng-click="searchBooks()">Search</button>
+            </div>
+        </div>
+        <div class="pagination-buttons" ng-if="books.length">
+
+            <button class="page" ng-click="previousPage()" ng-disabled="currentPage === 1"><</button>
+            <button class="page"  ng-click="nextPage()" ng-disabled="books.length < pageSize">></button>
+        </div>
+        <div class="book-list" ng-if="books.length">
+            <div class="book-item" ng-repeat="book in books" ng-Style="{ 'border': book.isFavorite  ? '6px solid #ab5e07':'6px solid #3d3737' }">
+                <img [src]="book.volumeInfo.imageLinks.smallThumbnail" alt="Book cover">
+                <h4>{{ book.volumeInfo.title }}</h3> 
+                <h5>{{ book.volumeInfo.authors }}</h5>
+                <button mat-raised-button color="primary" ng-click="toggleDetails(book)">Show More</button>
+      <div class="book-details" *ngIf="book.showDetails">
+        <p>Additional Details:</p>
+        <p><strong>Author(s):</strong> {{ book.volumeInfo.authors}}</p>
+        <p><strong>Description:</strong> {{ book.volumeInfo.description }}</p>
+        <button mat-icon-button ng-click="toggleFavorite(book)">
+            {{ book.isFavorite ? '❤️' : '🤍' }}
+        </button>
+      </div>
+            </div>
+    </div>
+
+    </div>
+</body>
+</html>

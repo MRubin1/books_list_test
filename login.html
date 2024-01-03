@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Login Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Include Material Design Lite (MUI) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/muicss/dist/css/mui.min.css">
+    <link rel="stylesheet" href="login.css">
+
+</head>
+
+<body ng-controller="LoginController">
+    <form class="login-form" name="loginForm" ng-submit="fakeLogin()">
+        <div class="mui-textfield">
+            <input type="text" ng-model="user.username" required>
+            <label>Username</label>
+        </div>
+        <div class="mui-textfield">
+            <input type="password" ng-model="user.password" required>
+            <label>Password</label>
+        </div>
+        <button type="submit" class="mui-btn mui-btn--primary">Login</button>
+    </form>
+
+</body>
+<script src="./login.js"></script>
+
+</html>
